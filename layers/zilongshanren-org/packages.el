@@ -126,8 +126,19 @@
                                                  'zilongshanren/org-insert-src-block)))
       (require 'ox-publish)
       (add-to-list 'org-latex-classes
+                   '("IEEEtran" "\\documentclass[9pt]{IEEEtran}
+                     \\usepackage[T1]{fontenc}
+                     \\usepackage{graphicx}
+                     "
+                     ("\\section{%s}" . "\\section*{%s}")
+                     ("\\subsection{%s}" . "\\subsection*{%s}")
+                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+      (add-to-list 'org-latex-classes
                    '("article"
-                     "\\documentclass[12pt]{article}"
+                     "\\documentclass[9pt]{article}"
                      ("\\section{%s}" . "\\section*{%s}")
                      ("\\subsection{%s}" . "\\subsection*{%s}")
                      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -185,7 +196,7 @@
       ;; To install texlive-xetex:
       ;;    `sudo USE="cjk" emerge texlive-xetex` on Gentoo Linux
       ;; }}
-      (setq org-latex-default-class "article")
+      (setq org-latex-default-class "IEEEtran")
       (setq org-latex-pdf-process
             '(
               "xelatex -interaction nonstopmode -output-directory %o %f"
@@ -319,8 +330,8 @@ unwanted space when exporting org-mode to html."
                :exclude-tags ("ol" "noexport")
                :section-numbers nil
                :html-preamble ,zilongshanren-website-html-preamble
-               :author "zilongshanren"
-               :email "guanghui8827@gmail.com"
+               :author "Boyang Yan"
+               :email "yanboyang713@gmail.com"
                :auto-sitemap t          ; Generate sitemap.org automagically...
                :sitemap-filename "index.org" ; ... call it sitemap.org (it's the default)...
                :sitemap-title "我的wiki"     ; ... with title 'Sitemap'.
