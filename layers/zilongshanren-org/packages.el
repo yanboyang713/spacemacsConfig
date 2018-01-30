@@ -14,7 +14,7 @@
 (defconst zilongshanren-org-packages
   '(
     (org :location built-in)
-    org-mac-link
+    ;; org-mac-link
     org-pomodoro
     deft
     (blog-admin :location (recipe
