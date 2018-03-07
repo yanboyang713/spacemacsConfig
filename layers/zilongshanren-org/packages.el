@@ -196,7 +196,7 @@
       ;; To install texlive-xetex:
       ;;    `sudo USE="cjk" emerge texlive-xetex` on Gentoo Linux
       ;; }}
-      (setq org-latex-default-class "IEEEtran")
+      (setq org-latex-default-class "article")
       (setq org-latex-pdf-process
             '(
               "xelatex -interaction nonstopmode -output-directory %o %f"
@@ -356,7 +356,24 @@ unwanted space when exporting org-mode to html."
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "tl" 'org-toggle-link-display)
       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-
+      ;;artist mode setting
+      (add-hook 'artist-mode-init-hook
+	            (lambda ()
+	              (define-key artist-mode-map (kbd "C-c C-a C-o") 'artist-ido-select-operation)
+	              (define-key artist-mode-map (kbd "C-c C-a C-c") 'artist-ido-select-settings)))
+      (add-hook 'artist-mode-hook
+	            (lambda ()
+	              (local-set-key (kbd "<f1>") 'org-mode)
+	              (local-set-key (kbd "<f2>") 'artist-select-op-pen-line) ; f2 = pen mode
+                  (local-set-key (kbd "<f3>") 'artist-select-op-line) ; f3 = line
+	              (local-set-key (kbd "<f4>") 'artist-select-op-square) ; f4 = rectangle
+	              (local-set-key (kbd "<f5>") 'artist-select-op-ellipse) ; f5 = ellipse
+	              (local-set-key (kbd "C-z") 'undo)
+                  ))
+      (global-set-key (kbd "C-<f1>") (lambda()
+			                           (interactive)
+			                           (show-all)
+			                           (artist-mode)))
       ;; hack for org headline toc
       (defun org-html-headline (headline contents info)
         "Transcode a HEADLINE element from Org to HTML.
@@ -479,6 +496,8 @@ holding contextual information."
   (progn
     (setq deft-use-filter-string-for-filename t)
     (setq deft-recursive t)
-    (setq deft-extension "org")
+    (setq deft-extension "org")(eval-after-load "artist"
+   '(define-key artist-mode-map [(down-mouse-3)] 'artist-mouse-choose-operation)
+   )
     (setq deft-directory deft-dir)))
 ;;; packages.el ends here
