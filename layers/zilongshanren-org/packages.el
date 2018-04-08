@@ -19,7 +19,7 @@
     deft
     (blog-admin :location (recipe
                            :fetcher github
-                           :repo "codefalling/blog-admin"))
+                           :repo "CodeFalling/blog-admin"))
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -33,13 +33,15 @@
     :defer t
     :commands blog-admin-start
     :init
+    (spacemacs/set-leader-keys "ob" 'blog-admin-start)
     (progn
       ;; do your configuration here
-      (setq blog-admin-backend-type 'hexo
-            blog-admin-backend-path blog-admin-dir
-            blog-admin-backend-new-post-with-same-name-dir nil
-            blog-admin-backend-hexo-config-file "_config.yml"
-            )
+      (setq blog-admin-backend-type 'nikola)
+      (setq blog-admin-backend-path "~/nikolaBlog")
+      (setq blog-admin-backend-new-post-in-drafts nil)
+      (setq blog-admin-backend-nikola-executable "/usr/bin/nikola") ;; path to nikola executable
+      (setq blog-admin-backend-nikola-config-file "conf.py") ;; conf.py is default
+
       (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
       )))
 
@@ -199,6 +201,7 @@
       (setq org-latex-default-class "article")
       (setq org-latex-pdf-process
             '(
+              "latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"
               "xelatex -interaction nonstopmode -output-directory %o %f"
               "xelatex -interaction nonstopmode -output-directory %o %f"
               "xelatex -interaction nonstopmode -output-directory %o %f"
@@ -223,6 +226,8 @@
          (dot . t)
          (js . t)
          (latex .t)
+         (R .t)
+         (c++ .t)
          (python . t)
          (emacs-lisp . t)
          (plantuml . t)

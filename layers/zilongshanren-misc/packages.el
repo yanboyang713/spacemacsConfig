@@ -38,13 +38,20 @@
         git-messenger
         gist
         hydra
+        bibtex
         wrap-region
         ranger
         golden-ratio
         (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
         browse-at-remote
+        slack
         ))
 
+(defun zilongshanren-misc/post-init-slack ()
+    (use-package slack
+      :config
+      (load-file "~/spacemacsSecrets/slack.el")
+      ))
 (defun zilongshanren-misc/init-browse-at-remote ()
   (use-package browse-at-remote
     :defer t
@@ -1168,3 +1175,23 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (evil-define-key 'normal markdown-mode-map (kbd "TAB") 'markdown-cycle)
         ))
     ))
+
+(defun zilongshanren-misc/post-init-bibtex ()
+  (setq reftex-default-bibliography '("~/Papers/references.bib"))
+  (setq org-ref-default-bibliography '("~/Papers/references.bib")
+        org-ref-pdf-directory "~/Papers/bibtex-pdfs/"
+        org-ref-bibliography-notes "~/Papers/notes.org")
+
+
+  (setq bibtex-completion-bibliography "~/Papers/references.bib"
+        bibtex-completion-library-path "~/Paper/bibtex-pdfs"
+        bibtex-completion-notes-path "~/Paper/helm-bibtex-notes")
+
+  ;; open pdf with system pdf viewer (works on mac)
+  (setq bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (start-process "open" "*open*" "open" fpath)))
+
+  ;; alternative
+  ;; (setq bibtex-completion-pdf-open-function 'org-open-file)
+  )

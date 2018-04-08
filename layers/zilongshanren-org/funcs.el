@@ -215,3 +215,15 @@
 					                              ("Trimming" . trimming)
 					                              ("Borders" . borders)
 					                              ("Spray-chars" . spray-chars))))))))
+
+(defun Nikola-publish (commit-msg)
+  "git add . & git commit & git push & hexo d"
+  (interactive "sInput commit message:")
+  (async-shell-command (format "cd %s ; git add . ; git commit -m \"%s\" ; nikola clean; nikola build; nikola clean; nikola build; nikola github_deploy"
+			                   hexo-dir
+			                   commit-msg)))
+
+(defun Nikola-org-add-read-more ()
+  "add <!--more-->"
+  (interactive)
+  (insert "{{{TEASER_END}}}"))
