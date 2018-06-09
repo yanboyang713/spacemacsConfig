@@ -227,7 +227,6 @@
          (js . t)
          (latex .t)
          (R .t)
-         (c++ .t)
          (python . t)
          (emacs-lisp . t)
          (plantuml . t)
