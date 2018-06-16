@@ -32,8 +32,8 @@
         lua-mode
         (cc-mode :location built-in)
         ;; flycheck-clojure
-        etags-select
-        (python :location built-in)
+        ;; etags-select
+        ;; (python :location built-in)
         (emacs-lisp :location built-in)
         ;; clojure-mode
         company
