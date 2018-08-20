@@ -90,7 +90,9 @@ values."
      (clojure :variables clojure-enable-fancify-symbols t)
      racket
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
+
      zilongshanren
      (chinese :packages youdao-dictionary fcitx
               :variables chinese-enable-fcitx nil
