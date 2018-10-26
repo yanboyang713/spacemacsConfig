@@ -34,6 +34,12 @@
     mu4e
     )
 )
+(defun boyang/init-gud-lldb ()
+  (use-package gud-lldb
+    :init
+    (add-hook 'gud-mode-hook 'lldb-mode-hook)
+    ))
+
 
 (defun boyang/post-init-mu4e ()
   :init
