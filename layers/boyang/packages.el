@@ -57,6 +57,7 @@
 ;;; Mail directory shortcuts
     (setq mu4e-maildir-shortcuts
           '(("/gmail/INBOX" . ?g)
+            ("/illinois/INBOX" . ?c)
             ))
 
 ;;; Bookmarks
@@ -82,6 +83,13 @@
              (mu4e-sent-folder "/gmail/[Gmail].Sent Mail")
              (mu4e-drafts-folder "/gmail/[Gmail].Drafts")
              (user-mail-address "yanboyang713@gmail.com")
+             (user-full-name "Boyang Yan"))
+
+            ("illinois"
+             (mu4e-sent-messages-behavior sent)
+             (mu4e-sent-folder "/illinois/Sent Items")
+             (mu4e-drafts-folder "/illinois/Drafts")
+             (user-mail-address "boyangy3@illinois.edu")
              (user-full-name "Boyang Yan"))
             ))
     

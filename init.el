@@ -32,7 +32,8 @@ values."
    dotspacemacs-configuration-layers
    '(
      ess
-     slack
+     cmake
+     ;; slack
      gnus
      ivy
      mu4e
