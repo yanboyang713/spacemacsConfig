@@ -32,6 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      ess
+     pdf
      cmake
      ;; slack
      gnus
